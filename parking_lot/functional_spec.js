@@ -2,50 +2,53 @@ let dataParking = []
 
 class Parking {
     static createParkingLot(n) {
-        n.forEach((el, i) => {
+        for (let i = 0; i < n; i++) {
             dataParking.push({
                 reserved: false,
                 carNumb: ""
             })
-        })
+        }
         return `Created parking lot with ${n} slots`
     }
 
-    static enterParking(noPol) {
-        dataParking.forEach((el, i) => {
-            if (!el.reserved) {
-                el.reserved = true
-                el.carNumb = noPol
+    static parkingIn(noPol) {
+        let count = 0
+        for (let i = 0; i < dataParking.length; i++) {
+            if (!dataParking[i].reserved) {
+                dataParking[i].reserved = true
+                dataParking[i].carNumb = noPol
                 return `Allocated slot number: ${i + 1}`
-            } else {
-                return `Sorry, parking lot is full`
+            } else if (dataParking[i].reserved) {
+                count++
             }
-        })
+        }
+        if (count === dataParking.length) {
+            return `Sorry, parking lot is full`
+        }
     }
 
-    static outParking(noPol, hour) {
-        let price = (hour - 2) * ( 10 + 10)
-        dataParking.forEach((el, i) => {
-            if (el.carNumb === noPol) {
-                el.reserved = false
-                el.carNumb = ""
+    static parkingOut(noPol, hour) {
+        let price = ((hour - 2) * 10) + 10
+        for (let i = 0; i < dataParking.length; i++) {
+            if (dataParking[i].carNumb === noPol) {
+                dataParking[i].reserved = false
+                dataParking[i].carNumb = ""
                 return `Registration number ${noPol} with Slot Number ${i + 1} is free with Charge ${price}`;
-            } else {
-                return `Registration number ${noPol} not found`;
-            }
-        })
+            } 
+        }
+        return `Registration number ${noPol} not found`;
     }
 
     static status() {
         let result = []
-        dataParking.forEach((el, i) => {
-            if (el.reserved) {
+        for (let i = 0; i < dataParking.length; i++) {
+            if (dataParking[i].reserved) {
                 result.push({
                     "Slot No.": i + 1,
-                    "Registration No.": el.carNumb
+                    "Registration No.": dataParking[i].carNumb
                 })
             }
-        })
+        }
         return result;
     }
 }
