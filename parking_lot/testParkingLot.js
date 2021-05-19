@@ -1,6 +1,6 @@
 const fs = require("fs")
 const Parking = require("./functional_spec")
-const textCommand = fs.readFileSync("../functional_spec/fixtures/file_input.txt", "utf-8")
+const textCommand = fs.readFileSync("./functional_spec/fixtures/file_input.txt", "utf-8")
 const commandRun = textCommand.split('\n')
 
 commandRun.forEach((el, i) => {
