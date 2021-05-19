@@ -4,6 +4,7 @@
   "description": "Prasetya Rinaldi",
   "main": "index.js",
   "scripts": {
+    "start": "node testParkingLot.js",
     "test": "jest --verbose"
   },
   "keywords": [],
